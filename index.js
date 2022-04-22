@@ -28,7 +28,7 @@ for (s in suits) {
 
 function start() {
     shuffleDeck(cards);
-    dealNewHand();
+    
 }
 
 function dealNewHand() {
