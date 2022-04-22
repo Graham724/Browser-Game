@@ -47,6 +47,16 @@ h1 {
     transform: rotate(-180deg);
 }
 
+#cover {
+    height: 160px;
+    width: 120px;
+    background-color: black;
+    border-radius: 10px;
+    position: absolute;
+    border:1px solid black;
+    padding: 3px;
+}
+
 .clubs, .spades{
     color: black;
 }

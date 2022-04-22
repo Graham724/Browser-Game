@@ -11,8 +11,7 @@ To 'Hit' is to ask for another card. To 'Stand' is to hold your total and end yo
 
 If you go over 21 you bust, and the dealer wins regardless of the dealer's hand.
 
-If you are dealt 21 from the start (Ace & 10), you got a blackjack.
-Blackjack  means you win 1.5 the amount of your bet. 
+If you are dealt 21 from the start (Ace & 10), you got a blackjack. 
 
 Dealer will hit until his/her cards total 17 or higher.
 

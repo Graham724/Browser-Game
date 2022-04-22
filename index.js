@@ -40,6 +40,10 @@ function dealNewHand() {
     for (x=0; x<2; x++){
         dealerCard.push(cards[cardCount]);
         dealerHand.innerHTML += cardOutput(cardCount,x);
+
+        if(x==0){
+            dealerHand.innerHTML += '<div id="cover" style="left:100px;"></div>';
+        }
         cardCount++
         playerCard.push(cards[cardCount]);
         playerHand.innerHTML += cardOutput(cardCount,x);
