@@ -57,6 +57,54 @@ h1 {
     padding: 3px;
 }
 
+#dealbtn, #playerActions {
+    display: none;
+}
+
+.btn {
+    border-radius: 10px;
+    padding: 5px, 10px;
+    color: black;
+    text-align: center;
+    display: inline-block;
+    font-size: 24px;
+}
+
+#message {
+    height: 70px;
+    font-size: 32px;
+    text-align: center;
+
+}
+/* buttons */
+#holdbtn {
+    background-color:red;
+}
+
+#hitbtn {
+    background-color:rgb(63, 189, 230);
+}
+
+#doublebtn {
+    background-color: rgb(206, 206, 40);
+}
+
+#maxBet {
+    background-color: red;
+}
+
+#startbtn {
+    background-color: white;
+}
+
+#dealbtn {
+    background-color: red;
+}
+
+#splitbtn {
+
+}
+
 .clubs, .spades{
     color: black;
 }

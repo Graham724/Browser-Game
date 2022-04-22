@@ -11,16 +11,20 @@
 <h1> Graham's Blackjack Game</h1>'
 
 <div>
+    <div id="message">Press Start to Shuffle the Deck and Deal a Hand!</div>
+    <div id="start">
+        <button id="startbtn" type="button" onclick="start()" class="btn">Start!</button>
+</div>
+<div>
     <div class="total">Total $<span id ="dollars">100</span></div>
     <div>Bet Amount $<input type="number" id="playerBet" value="0" min="1" max="100">
         <button id="maxBet" type="button" onclick="maxBet()"
         class="btn">Max Bet</button>
     </div>    
-</div>
-<div>
-    <div id="message">Press Start to Deal New Hand!</div>
-    <div id="start">
-        <button id="startbtn" type="button" onclick="start()" class="btn">Start!</button>
+    <div>
+     <button id="dealbtn" type="button" onclick="dealNewHand()" class = "btn">
+    Deal Cards</button> 
+    </div>
 </div>
 <br>
 <div id="output">
@@ -37,10 +41,6 @@
         class = "btn">Double</button>
         <button id="splitbtn" type="button" onclick="cardAction('split')"
         class = "btn">Split</button>
-    </div>
-    <div>
-     <button id="dealbtn" type="button" onclick="dealNewHand()" class = "btn">
-    Deal Cards</button> 
     </div>
 </div>
 
