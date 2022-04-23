@@ -3,9 +3,11 @@ let cards = [];
 let playerCard = [];
 let dealerCard = [];
 let cardCount = 0;
+let playerDollars = 100;
 let suits = ["hearts", "clubs", "spades", "diams"];
 let numb = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 let output = document.getElementById("output");
+let message = document.getElementById("message");
 let dealerHand = document.getElementById("dealerHand");
 let playerHand = document.getElementById("playerHand");
 
@@ -28,7 +30,9 @@ for (s in suits) {
 
 function start() {
     shuffleDeck(cards);
-    
+    dealNewHand();
+    document.getElementById("start").style.display = "none";
+    document.getElementById("dollars").innerHTML = playerDollars;
 }
 
 function dealNewHand() {
@@ -37,10 +41,21 @@ function dealNewHand() {
     dealerHand.innerHTML = "";
     playerHand.innerHTML = "";
 
+    let betValue = document.getElementById('playerBet');
+    playerDollars = playerDollars-betValue;
+    document.getElementById("dollars").innerHTML = playerDollars;
+    document.getElementById("playerBet").disabled = true;
+    document.getElementById("maxBet").disabled = true;
+    deal();
+}
+
+function deal() {
+    console.log(cards);
+
     for (x=0; x<2; x++){
         dealerCard.push(cards[cardCount]);
         dealerHand.innerHTML += cardOutput(cardCount,x);
-
+    
         if(x==0){
             dealerHand.innerHTML += '<div id="cover" style="left:100px;"></div>';
         }
@@ -51,6 +66,7 @@ function dealNewHand() {
     }
     console.log(dealerCard);
     console.log(playerCard);
+
 }
 
 function cardOutput(n,x) {
@@ -60,6 +76,27 @@ function cardOutput(n,x) {
       + cards[n].cardnum + '<br></div> </div>';
 }
 
+function cardAction(a) {
+    console.log(a);
+    switch (a) {
+        case 'hit':
+            playCard();
+            break;
+        case 'hold':
+            endPlay();
+            break;
+        case 'double':
+            playCard();
+            endPlay();
+            break;
+        case 'split':
+
+            break;
+        default:
+            console.log('done');
+            endPlay();
+    }
+}
 
 function shuffleDeck(array) {
     for (let i = array.length -1; i>0; i--){
