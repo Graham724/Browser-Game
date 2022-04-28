@@ -1,5 +1,9 @@
 Browser Game for Milestone Project 1
 
+Blackjack Game made using Javascript, HTML, and CSS
+
+source for Cardback image http://clipart-library.com/clipart/8cEbeEMLi.htm
+
 Blackjack Rules
 The goal of blackjack is to beat the dealer's hand without going over 21.
 

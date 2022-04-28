@@ -4,6 +4,7 @@ body {
 
 h1 {
     text-align: center;
+    font-family: 'Courier New', Courier, monospace;
     background-color: white;
     padding: 5px;
     height: 1.5em;
@@ -59,16 +60,17 @@ h1 {
 #cover {
     height: 160px;
     width: 120px;
-    background-color: black;
+    /* source for Cardback image http://clipart-library.com/clipart/8cEbeEMLi.htm */
+    background-image: url(assets/Cardback.png);
+    background-size: contain;
+    background-repeat: no-repeat;
     border-radius: 10px;
     position: absolute;
     border:1px solid black;
     padding: 3px;
 }
 
-/* #dealbtn, #playerActions {
-    display: none;
-} */
+
 
 .btn {
     border-radius: 10px;
@@ -129,10 +131,6 @@ h1 {
 
 #dealbtn {
     background-color: red;
-}
-
-#splitbtn {
-
 }
 
 .clubs, .spades{

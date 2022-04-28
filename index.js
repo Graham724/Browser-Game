@@ -2,11 +2,13 @@
 let cards = [];
 let playerCard = [];
 let dealerCard = [];
+let suits = ["hearts", "clubs", "spades", "diams"];
+let numb = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+
 let cardCount = 0;
 let playerDollars = 100;
 let playEnd = false;
-let suits = ["hearts", "clubs", "spades", "diams"];
-let numb = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+
 let output = document.getElementById("output");
 let message = document.getElementById("message");
 let dealerHand = document.getElementById("dealerHand");
@@ -18,13 +20,14 @@ let dollarValue = document.getElementById("dollars")
 document.getElementById("playerBet").onchange = function() {
     if(this.value < 0){this.value = 0;}
     if(this.value > playerDollars){this.value = playerDollars}
+    message.innerHTML = "Bet changed to $" + this.value;
 }
 
 for (s in suits) {
     let suit = suits[s][0].toUpperCase();
     let bgcolor = (suit == "S" || suit == "C") ? "black" : "red";
     for(n in numb) {
-        let cardValue = (n>9) ? 10 : parseInt(n)+1
+        let cardValue = (n > 9) ? 10 : parseInt(n)+1;
         let card = {
             suit: suit,
             icon:suits[s],
@@ -40,8 +43,8 @@ for (s in suits) {
 function start() {
     shuffleDeck(cards);
     dealNewHand();
-    document.getElementById("start").style.display = "none";
-    document.getElementById("dollars").innerHTML = playerDollars;
+    document.getElementById('start').style.display = "none";
+    dollarValue.innerHTML = playerDollars;
 }
 
 // Dealing cards out of the deck& shuffling
@@ -54,7 +57,7 @@ function dealNewHand() {
     playerHand.innerHTML = "";
 
     let betValue = document.getElementById('playerBet');
-    playerDollars = playerDollars-betValue;
+    playerDollars = (playerDollars - betValue);
     document.getElementById("dollars").innerHTML = playerDollars;
     document.getElementById("playerBet").disabled = true;
     document.getElementById("maxBet").disabled = true;
@@ -93,8 +96,11 @@ function deal() {
         playerHand.innerHTML += cardOutput(cardCount,x);
         redeal()
     }
-    
-    playerValue.innerHTML = checkTotal(playerHand);
+    let pValue = checkTotal(playerHand);
+    if(pValue == 21 && playerHand.length == 2) {
+        endPlay();
+    }
+    playerValue.innerHTML = pValue;
 
 }
 
@@ -112,7 +118,7 @@ function cardOutput(n,x) {
 
 function maxBet() {
     document.getElementById('playerBet').value = playerDollars;
-    message.innerHTML ="Bet changer to $"+playerDollars;
+    message.innerHTML ="Bet changed to $"+playerDollars;
 }
 
 function cardAction(a) {
@@ -138,9 +144,6 @@ function cardAction(a) {
             document.getElementById("playerBet").value = betValue;
             playCard();
             endPlay();
-            break;
-        case 'split':
-
             break;
         default:
             console.log('done');
@@ -181,7 +184,7 @@ function endPlay() {
     }
 
     let pValue = checkTotal(playerHand);
-    if(pvalue == 21 && playerHand.length == 2) {
+    if(pValue == 21 && playerHand.length == 2) {
         message.innerHTML = "Player Has Blackjack!"
         payoutJack = 1.5;
     }
@@ -217,7 +220,7 @@ function checkTotal(arr) {
             aceAdjust = true;
             resultValue = resultValue +10;
         }
-        resultValue= resultValue+arr[i].cardvalue;
+        resultValue= resultValue + arr[i].cardvalue;
     }
     if(aceAdjust && resultValue > 21) {
         resultValue = resultValue -10;
