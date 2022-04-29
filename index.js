@@ -1,3 +1,15 @@
+// Remaining Questions/things to solve.
+
+// -total shows up as Nan when start is pressed.
+
+// -Start button does not dissapear when clicked like it should.
+
+// -Cardnum, icon both showing errors and presumably everything else from line 43-48 not
+//  being read properly.
+
+// -hold, hit, and double all clickable before start of game allowing for potential user
+//  error.
+
 // Deck
 let cards = [];
 let playerCard = [];
@@ -23,6 +35,7 @@ document.getElementById("playerBet").onchange = function() {
     message.innerHTML = "Bet changed to $" + this.value;
 }
 
+
 for (s in suits) {
     let suit = suits[s][0].toUpperCase();
     let bgcolor = (suit == "S" || suit == "C") ? "black" : "red";
@@ -39,7 +52,7 @@ for (s in suits) {
     }
 }
 
-
+// start button function
 function start() {
     shuffleDeck(cards);
     dealNewHand();
@@ -121,6 +134,7 @@ function maxBet() {
     message.innerHTML ="Bet changed to $"+playerDollars;
 }
 
+// Button functionality
 function cardAction(a) {
     console.log(a);
     switch (a) {
@@ -151,6 +165,7 @@ function cardAction(a) {
     }
 }
 
+// playing a card, checking total and ending play functions
 function playCard() {
     playerCard.push(cards[cardCount]);
         playerHand.innerHTML += cardOutput(cardCount,(playerCard.length -1));
