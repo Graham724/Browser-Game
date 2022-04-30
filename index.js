@@ -70,9 +70,9 @@ function dealNewHand() {
     dealerHand.innerHTML = "";
     playerHand.innerHTML = "";
 
-    let betValue = document.getElementById('playerBet');
+    let betValue = document.getElementById('playerBet').value;
     console.log("pdollors", playerDollars)
-    playerDollars = (playerDollars - betValue);
+    playerDollars = playerDollars - betValue;
     console.log("pdollors2", playerDollars)
     dollarValue.innerHTML = playerDollars;
     document.getElementById("playerBet").disabled = true;
@@ -225,7 +225,7 @@ function endPlay() {
         message.innerHTML += '<span style="color:red;"> Dealer Wins! You lost $'+betValue+'</span>';
     }
     playerValue.innerHTML = pValue;
-    dollarValue.innerHTML = playerdollars;
+    dollarValue.innerHTML = playerDollars;
 }
 
 function checkTotal(arr) {
