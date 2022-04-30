@@ -1,6 +1,6 @@
 // Remaining Questions/things to solve.
 
-// -total shows up as Nan when start is pressed.
+// error when player goes over 21 and dealer wins
 
 
 // Deck
@@ -71,9 +71,7 @@ function dealNewHand() {
     playerHand.innerHTML = "";
 
     let betValue = document.getElementById('playerBet').value;
-    console.log("pdollors", playerDollars)
     playerDollars = playerDollars - betValue;
-    console.log("pdollors2", playerDollars)
     dollarValue.innerHTML = playerDollars;
     document.getElementById("playerBet").disabled = true;
     document.getElementById("maxBet").disabled = true;
@@ -198,6 +196,9 @@ function endPlay() {
         dealerCard.push(cards[cardCount]);
         dealerHand.innerHTML += cardOutput(cardCount,(dealerCard.length -1));
         redeal();
+
+        // Possible source of error??
+
         dvalue = checkTotal(dealerHand);
         dealerValue.innerHTML = dValue;
     }
