@@ -2,13 +2,6 @@
 
 // -total shows up as Nan when start is pressed.
 
-// -Start button does not dissapear when clicked like it should.
-
-// -Cardnum, icon both showing errors and presumably everything else from line 43-48 not
-//  being read properly.
-
-// -hold, hit, and double all clickable before start of game allowing for potential user
-//  error.
 
 // Deck
 let cards = [];
@@ -52,12 +45,20 @@ for (s in suits) {
     }
 }
 
+document.getElementById("holdbtn").disabled = true;
+document.getElementById("hitbtn").disabled = true;
+document.getElementById("doublebtn").disabled = true;
+
+
 // start button function
 function start() {
     shuffleDeck(cards);
     dealNewHand();
     document.getElementById('start').style.display = "none";
     dollarValue.innerHTML = playerDollars;
+    document.getElementById("holdbtn").disabled = false;
+    document.getElementById("hitbtn").disabled = false;
+    document.getElementById("doublebtn").disabled = false;
 }
 
 // Dealing cards out of the deck& shuffling
@@ -70,8 +71,10 @@ function dealNewHand() {
     playerHand.innerHTML = "";
 
     let betValue = document.getElementById('playerBet');
+    console.log("pdollors", playerDollars)
     playerDollars = (playerDollars - betValue);
-    document.getElementById("dollars").innerHTML = playerDollars;
+    console.log("pdollors2", playerDollars)
+    dollarValue.innerHTML = playerDollars;
     document.getElementById("playerBet").disabled = true;
     document.getElementById("maxBet").disabled = true;
     deal();
@@ -109,17 +112,18 @@ function deal() {
         playerHand.innerHTML += cardOutput(cardCount,x);
         redeal()
     }
-    let pValue = checkTotal(playerHand);
-    if(pValue == 21 && playerHand.length == 2) {
+    // checkTotal(playerCard)
+    let pValue = checkTotal(playerCard);
+    if(pValue == 21 && playerCard.length == 2) {
         endPlay();
     }
     playerValue.innerHTML = pValue;
 
 }
 
-function cardOutput(n,x) {
 
-    // error with reading undefined properties reading icon
+
+function cardOutput(n,x) {
     
     let hpos = (x>0) ? x*60+100 : 100;
     return '<div class="gcard ' + cards[n].icon + '" style="left:' + hpos + 'px;">  <div class="top-card suit">'
@@ -170,7 +174,7 @@ function playCard() {
     playerCard.push(cards[cardCount]);
         playerHand.innerHTML += cardOutput(cardCount,(playerCard.length -1));
         redeal();
-        let resultValue = checkTotal(playerHand);
+        let resultValue = checkTotal(playerCard);
         playerValue.innerHTML = resultValue;
         if (resultValue > 21) {
             message.innerHTML = "Bust!";
@@ -187,7 +191,7 @@ function endPlay() {
     message.innerHTML = "Game Over<br>";
     let payoutJack = 1;
 
-    let dValue = checkTotal(dealerHand);
+    let dValue = checkTotal(dealerCard);
     dealerValue.innerHTML = dValue;
     
     while(dValue<17) {
@@ -198,8 +202,8 @@ function endPlay() {
         dealerValue.innerHTML = dValue;
     }
 
-    let pValue = checkTotal(playerHand);
-    if(pValue == 21 && playerHand.length == 2) {
+    let pValue = checkTotal(playerCard);
+    if(pValue == 21 && playerCard.length == 2) {
         message.innerHTML = "Player Has Blackjack!"
         payoutJack = 1.5;
     }
@@ -228,9 +232,6 @@ function checkTotal(arr) {
     let resultValue = 0;
     let aceAdjust = false;
     for (let i in arr) {
-
-        // cardnum error
-
         if(arr[i].cardnum == 'A' && !aceAdjust) {
             aceAdjust = true;
             resultValue = resultValue +10;
