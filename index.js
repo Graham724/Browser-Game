@@ -1,8 +1,3 @@
-// Remaining Questions/things to solve.
-
-// error when player goes over 21 and dealer wins
-
-
 // Deck
 let cards = [];
 let playerCard = [];
@@ -138,7 +133,6 @@ function maxBet() {
 
 // Button functionality
 function cardAction(a) {
-    console.log(a);
     switch (a) {
         case 'hit':
             playCard();
@@ -162,7 +156,6 @@ function cardAction(a) {
             endPlay();
             break;
         default:
-            console.log('done');
             endPlay();
     }
 }
@@ -196,10 +189,7 @@ function endPlay() {
         dealerCard.push(cards[cardCount]);
         dealerHand.innerHTML += cardOutput(cardCount,(dealerCard.length -1));
         redeal();
-
-        // Possible source of error??
-
-        dvalue = checkTotal(dealerHand);
+        dValue = checkTotal(dealerCard);
         dealerValue.innerHTML = dValue;
     }
 
